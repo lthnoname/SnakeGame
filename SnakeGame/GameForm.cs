@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,10 @@ namespace SnakeGame
 {
     public partial class GameForm : Form
     {
+        //Khai báo biến lưu trữ lựa chọn từ MenuForm
+        private int LoaiMap;    //1: map1 (mặc định) | 2: map2
+        private int MauRan;     // 1: rắn xanh lá (mặc định) | 2: rắn đỏ | 3: rắn xanh dương
+
         private NewGameEngine _gameEngine;
         private const int GridSize = 20;
         private int columns;
@@ -28,9 +33,15 @@ namespace SnakeGame
         private Image SnakeHeadDownImage;
         private Image SnakeHeadLeftImage;
         private Image SnakeHeadRightImage;
-        public GameForm()
+        private Image OrgSnakeHead;
+        public GameForm(int mapduocchon, int randuocchon)
         {
+            this.LoaiMap = mapduocchon;
+            this.MauRan = randuocchon;
+
             InitializeComponent();
+
+
             this.KeyPreview = true;
             this.DoubleBuffered = true;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -49,22 +60,41 @@ namespace SnakeGame
             _gameEngine.GameOver += GameEngine_GameOver;
 
             //khởi tạo ảnh
-            FoodImage = Properties.Resources.DefaultSnakeFood;  
-            SnakeBodyImage = Properties.Resources.DefaultSnakeBody;
-            Image OrgHead = Properties.Resources.DefaultSnakeHead;
+            FoodImage = Properties.Resources.DefaultSnakeFood;
+            VeRan();
+            UpdateUI(_gameEngine.State);
+        }
 
-            SnakeHeadUpImage = (Image)OrgHead.Clone();
+        private void VeRan()
+        {
+            switch(MauRan){
+                case 1:
+                    SnakeBodyImage = Properties.Resources.DefaultSnakeBody;
+                    OrgSnakeHead = Properties.Resources.DefaultSnakeHead;
+                    break;
+                case 2:
+                    SnakeBodyImage = Properties.Resources.RedBody;
+                    OrgSnakeHead = Properties.Resources.RedHead;
+                    break;
+                case 3:
+                    SnakeBodyImage = Properties.Resources.BlueBody;
+                    OrgSnakeHead = Properties.Resources.BlueHead;
+                    break;
+                default:
+                    SnakeBodyImage = Properties.Resources.DefaultSnakeBody;
+                    OrgSnakeHead = Properties.Resources.DefaultSnakeHead;
+                    break;
+            }
+            SnakeHeadUpImage = (Image)OrgSnakeHead.Clone();
             SnakeHeadUpImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
 
-            SnakeHeadDownImage =(Image)OrgHead.Clone();
+            SnakeHeadDownImage = (Image)OrgSnakeHead.Clone();
             SnakeHeadDownImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
-            SnakeHeadLeftImage = (Image)OrgHead.Clone();
+            SnakeHeadLeftImage = (Image)OrgSnakeHead.Clone();
             SnakeHeadLeftImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
-            SnakeHeadRightImage = (Image)OrgHead.Clone();
-
-            UpdateUI(_gameEngine.State);
+            SnakeHeadRightImage = (Image)OrgSnakeHead.Clone();
         }
 
         // Xử lý sự kiện State Changed từ GameEngine

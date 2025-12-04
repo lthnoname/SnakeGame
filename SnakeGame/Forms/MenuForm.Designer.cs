@@ -56,7 +56,7 @@
             // 
             this.BlueSnakeRad.AutoSize = true;
             this.BlueSnakeRad.Image = global::SnakeGame.Properties.Resources.BlueHead;
-            this.BlueSnakeRad.Location = new System.Drawing.Point(534, 23);
+            this.BlueSnakeRad.Location = new System.Drawing.Point(534, 17);
             this.BlueSnakeRad.Name = "BlueSnakeRad";
             this.BlueSnakeRad.Size = new System.Drawing.Size(145, 128);
             this.BlueSnakeRad.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             this.RedSnakeRad.AutoSize = true;
             this.RedSnakeRad.Image = global::SnakeGame.Properties.Resources.RedHead;
-            this.RedSnakeRad.Location = new System.Drawing.Point(311, 23);
+            this.RedSnakeRad.Location = new System.Drawing.Point(311, 17);
             this.RedSnakeRad.Name = "RedSnakeRad";
             this.RedSnakeRad.Size = new System.Drawing.Size(145, 128);
             this.RedSnakeRad.TabIndex = 1;
@@ -78,7 +78,7 @@
             // 
             this.DefaultSnakeRad.AutoSize = true;
             this.DefaultSnakeRad.Image = global::SnakeGame.Properties.Resources.DefaultSnakeHead;
-            this.DefaultSnakeRad.Location = new System.Drawing.Point(82, 23);
+            this.DefaultSnakeRad.Location = new System.Drawing.Point(82, 17);
             this.DefaultSnakeRad.Name = "DefaultSnakeRad";
             this.DefaultSnakeRad.Size = new System.Drawing.Size(145, 128);
             this.DefaultSnakeRad.TabIndex = 0;
@@ -129,7 +129,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 55);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Start Game";
+            this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // MenuForm
